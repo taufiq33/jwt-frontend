@@ -1,6 +1,4 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Provider } from "react-redux";
-import { appStore } from "./store/appStore";
 
 import Root from "./layout/Root";
 import Login from "./pages/Login";
@@ -8,6 +6,8 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 
 import { action as registerAction } from "./pages/Register";
+import { action as loginAction } from "./pages/Login";
+import { loader as dashboardLoader } from "./pages/Dashboard";
 
 const appRouter = createBrowserRouter([
   {
@@ -17,10 +17,12 @@ const appRouter = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+        action: loginAction,
       },
       {
         path: "/dashboard",
         element: <Dashboard />,
+        loader: dashboardLoader,
       },
       {
         path: "/register",
@@ -32,11 +34,7 @@ const appRouter = createBrowserRouter([
 ]);
 
 function App() {
-  return (
-    <Provider store={appStore}>
-      <RouterProvider router={appRouter} />
-    </Provider>
-  );
+  return <RouterProvider router={appRouter} />;
 }
 
 export default App;
