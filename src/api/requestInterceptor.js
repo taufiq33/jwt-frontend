@@ -3,8 +3,9 @@ import { getAccessToken } from "../helper/access_token";
 export function includeAccessToken(config) {
   const withoutToken = ["/users/login", "/users/register"];
 
-  if (!config.url.includes(withoutToken)) {
+  if (!withoutToken.includes(config.url)) {
     config.headers = {
+      ...config.headers,
       Authorization: "Bearer " + getAccessToken(),
     };
   }
