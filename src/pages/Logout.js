@@ -11,5 +11,6 @@ export async function action() {
     return redirect("/login");
   } catch (error) {
     console.log(error);
+    return redirect("/");
   }
 }
