@@ -7,6 +7,7 @@ import Dashboard from "./pages/Dashboard";
 
 import { action as registerAction } from "./pages/Register";
 import { action as loginAction } from "./pages/Login";
+import { action as logoutAction } from "./pages/Logout";
 import { loader as dashboardLoader } from "./pages/Dashboard";
 
 const appRouter = createBrowserRouter([
@@ -28,6 +29,10 @@ const appRouter = createBrowserRouter([
         path: "/register",
         element: <Register />,
         action: registerAction,
+      },
+      {
+        path: "/logout",
+        action: logoutAction,
       },
     ],
   },

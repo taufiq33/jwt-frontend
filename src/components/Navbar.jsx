@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Form, NavLink } from "react-router-dom";
 
 export default function Navbar() {
   return (
@@ -24,9 +24,11 @@ export default function Navbar() {
         </NavLink>
       </li>
       <li>
-        <NavLink className="border-b-1 text-red-500" to="/logout">
-          Logout
-        </NavLink>
+        <Form action="/logout" method="post">
+          <button className="border-b-1 text-red-500" type="submit">
+            Logout
+          </button>
+        </Form>
       </li>
     </ul>
   );
