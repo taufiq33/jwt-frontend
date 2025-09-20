@@ -4,6 +4,7 @@ import Root from "./layout/Root";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 import { action as registerAction } from "./pages/Register";
 import { action as loginAction } from "./pages/Login";
@@ -20,9 +21,15 @@ const appRouter = createBrowserRouter([
         action: loginAction,
       },
       {
-        path: "/dashboard",
-        element: <Dashboard />,
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: "/dashboard",
+            element: <Dashboard />,
+          },
+        ],
       },
+
       {
         path: "/register",
         element: <Register />,

@@ -1,18 +1,6 @@
-import axios from "axios";
 import { appStore, authSliceAction } from "../store/appStore";
 import api from "./auth";
-
-async function requestNewAccessToken() {
-  try {
-    const request = await axios.get("http://localhost:5000/api/token", {
-      withCredentials: true,
-    });
-    const newAccToken = request.data.access_token;
-    return newAccToken;
-  } catch (error) {
-    return Promise.reject(error);
-  }
-}
+import { requestNewAccessToken } from "../helper/access_token";
 
 export function responseSuccessInterceptor(response) {
   return response;
