@@ -4,6 +4,7 @@ import {
   useNavigate,
   Form,
 } from "react-router-dom";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Input from "../components/Input";
 import api from "../api/auth";
@@ -14,18 +15,20 @@ export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  if (data?.accessToken) {
-    dispatch(
-      authSliceAction.setAuth({
-        userId: data.user.id,
-        username: data.user.username,
-        email: data.user.email,
-        accessToken: data.accessToken,
-      })
-    );
+  useEffect(() => {
+    if (data?.accessToken) {
+      dispatch(
+        authSliceAction.setAuth({
+          userId: data.user.id,
+          username: data.user.username,
+          email: data.user.email,
+          accessToken: data.accessToken,
+        })
+      );
 
-    navigate("/dashboard");
-  }
+      navigate("/dashboard");
+    }
+  }, [data, dispatch, navigate]);
 
   const isSubmitting = useNavigation().state === "submitting";
   return (
