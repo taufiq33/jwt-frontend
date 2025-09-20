@@ -15,6 +15,9 @@ export async function responseErrorInterceptor(error) {
   const originalConfig = error.config;
 
   if (error.response?.status === 401 && !originalConfig._retry) {
+    if (error.response?.data.msg === "invalid credentials") {
+      return Promise.reject(error);
+    }
     originalConfig._retry = true;
 
     const newAccToken = await requestNewAccessToken();
